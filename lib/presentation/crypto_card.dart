@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:three_dots_assignment/core/app_constants.dart';
 import 'package:three_dots_assignment/models/crypto_api_response.dart';
 import 'package:three_dots_assignment/utils/constants.dart';
 
@@ -47,7 +48,7 @@ class CryptoCard extends StatelessWidget {
               height: 100,
               width: 150,
               child: Image.network(
-                "https://www.cryptocompare.com${crypto.CoinInfo?.ImageUrl}",
+                "${Constants.baseUrl}${crypto.CoinInfo?.ImageUrl}",
                 fit: BoxFit.cover,
               ),
             ),

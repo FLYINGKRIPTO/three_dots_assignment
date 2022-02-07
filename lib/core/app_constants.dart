@@ -4,4 +4,5 @@ class Constants {
   static const String currency = "USD";
   static const String successResponse = "Success";
   static const String errorMessage = "Some Error occurred";
+  static const String baseUrl = "https://www.cryptocompare.com";
 }
