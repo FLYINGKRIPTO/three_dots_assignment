@@ -11,7 +11,7 @@ CoinsInfo _$CoinsInfoFromJson(Map<String, dynamic> json) => CoinsInfo(
       FullName: json['FullName'] as String?,
       Name: json['Name'] as String?,
       ImageUrl: json['ImageUrl'] as String?,
-      BlockNumber: json['BlockNumber'] as int?,
+      BlockNumber: (json['BlockNumber'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CoinsInfoToJson(CoinsInfo instance) => <String, dynamic>{

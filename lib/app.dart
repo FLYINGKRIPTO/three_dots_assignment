@@ -16,9 +16,9 @@ class _ThreeDotsAppState extends State<ThreeDotsApp> {
 
   final _navigatorKeys = {
     TabItem.crypto: GlobalKey<NavigatorState>(),
-    TabItem.green: GlobalKey<NavigatorState>(),
-    TabItem.blue: GlobalKey<NavigatorState>(),
-    TabItem.yellow: GlobalKey<NavigatorState>()
+    TabItem.stocks: GlobalKey<NavigatorState>(),
+    TabItem.messages: GlobalKey<NavigatorState>(),
+    TabItem.profile: GlobalKey<NavigatorState>()
   };
 
   void _selectTab(TabItem tabItem) {
@@ -51,9 +51,9 @@ class _ThreeDotsAppState extends State<ThreeDotsApp> {
       child: Scaffold(
         body: Stack(children: <Widget>[
           _buildOffstageNavigator(TabItem.crypto),
-          _buildOffstageNavigator(TabItem.green),
-          _buildOffstageNavigator(TabItem.blue),
-          _buildOffstageNavigator(TabItem.yellow),
+          _buildOffstageNavigator(TabItem.stocks),
+          _buildOffstageNavigator(TabItem.messages),
+          _buildOffstageNavigator(TabItem.profile),
         ]),
         bottomNavigationBar: BottomNavigation(
           currentTab: _currentTab,

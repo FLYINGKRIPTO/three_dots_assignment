@@ -35,11 +35,11 @@ class TabNavigator extends StatelessWidget {
               onPush: (materialIndex) =>
                   _push(context),
             );
-          case TabItem.green:
+          case TabItem.stocks:
             return  Container();
-          case TabItem.blue:
+          case TabItem.messages:
             return  Container();
-          case TabItem.yellow:
+          case TabItem.profile:
             return  Container();
         }
       }

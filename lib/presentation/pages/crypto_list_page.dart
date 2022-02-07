@@ -7,6 +7,7 @@ import 'package:three_dots_assignment/cubit/crypto_state.dart';
 import 'package:three_dots_assignment/models/crypto_api_response.dart';
 import 'package:three_dots_assignment/presentation/common/app_bar.dart';
 import 'package:three_dots_assignment/presentation/common/tab_item.dart';
+import 'package:three_dots_assignment/presentation/crypto_card.dart';
 import 'package:three_dots_assignment/presentation/hearder_widget.dart';
 import 'package:three_dots_assignment/utils/space.dart';
 
@@ -87,7 +88,7 @@ class _CryptoListWidgetState extends State<CryptoListWidget> {
         return ListView.separated(
           itemBuilder: (context, index) {
             if (index < coins.length) {
-              return coin(coins[index], context);
+              return coin(coins[index], index);
             } else {
               Timer(const Duration(milliseconds: 30), () {
                 _scrollController
@@ -104,17 +105,8 @@ class _CryptoListWidgetState extends State<CryptoListWidget> {
     );
   }
 
-  Widget coin(Coin coin, BuildContext context) {
-    return SizedBox(
-      height: 150,
-      child: Row(
-        children: [
-          Text(coin.CoinInfo?.FullName ?? ""),
-          Text(coin.RAW?.USD?.PRICE?.toString() ?? "")
-
-        ],
-      ),
-    );
+  Widget coin(Coin coin, int index) {
+    return CryptoCard(crypto: coin);
   }
 }
 
@@ -126,8 +118,11 @@ class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(
-        color: Theme.of(context).primaryColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24.0),
+        child: CircularProgressIndicator(
+          color: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }

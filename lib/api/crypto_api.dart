@@ -8,8 +8,6 @@ part 'crypto_api.g.dart';
 abstract class CryptoAPIClient {
   factory CryptoAPIClient(Dio dio, {String baseUrl}) = _CryptoAPIClient;
 
-  static const int pageSize = 10;
-
   @GET("/top/totalvolfull")
   Future<CryptoResponse> getCoins(@Query("limit") int limit,
       @Query("page") int page, @Query("tsym") String tsym, @Query("api_key") String api_key);

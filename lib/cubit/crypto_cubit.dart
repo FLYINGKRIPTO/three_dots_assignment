@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:three_dots_assignment/api/crypto_api.dart';
+import 'package:three_dots_assignment/core/app_constants.dart';
 import 'package:three_dots_assignment/models/crypto_api_response.dart';
 
 import 'crypto_state.dart';
@@ -22,10 +24,10 @@ class CryptoListCubit extends Cubit<CryptoListState> {
     emit(CryptoListState.loading(
         isFirstFetched: page == 1, coins: previousData));
 
-    final response = await _cryptoAPIClient.getCoins(10, page, "USD",
-        "3024826873ab5032eb488b8d23b7c056f177e39e094179cd783a0b7052b26ba0");
+    final response = await _cryptoAPIClient.getCoins(
+        Constants.pageSize, page, Constants.currency, Constants.api_key);
 
-    if (response.Message == "Success") {
+    if (response.Message == Constants.successResponse) {
       page++;
 
       final coins = (state as CryptoListStateLoading).coins;
@@ -34,7 +36,7 @@ class CryptoListCubit extends Cubit<CryptoListState> {
       emit(CryptoListState.loaded(coins: coins));
     } else {
       emit(const CryptoListState.error(
-        errorMsg: "Some Error occured",
+        errorMsg: Constants.errorMessage,
       ));
     }
   }

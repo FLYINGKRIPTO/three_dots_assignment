@@ -8,7 +8,7 @@ class CoinsInfo {
   final String? FullName;
   final String? Name;
   final String? ImageUrl;
-  final int? BlockNumber;
+  final double? BlockNumber;
 
   CoinsInfo(
       {required this.Id,

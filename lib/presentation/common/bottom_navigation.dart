@@ -16,9 +16,9 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       items: [
         _buildItem(TabItem.crypto),
-        _buildItem(TabItem.green),
-        _buildItem(TabItem.blue),
-        _buildItem(TabItem.yellow),
+        _buildItem(TabItem.stocks),
+        _buildItem(TabItem.messages),
+        _buildItem(TabItem.profile),
       ],
       onTap: (index) => onSelectTab(
         TabItem.values[index],
@@ -31,7 +31,7 @@ class BottomNavigation extends StatelessWidget {
   BottomNavigationBarItem _buildItem(TabItem tabItem) {
     return BottomNavigationBarItem(
       icon: const  Icon(
-        Icons.layers,
+        Icons.money,
         color: Colors.black,
       ),
       label: tabName[tabItem],

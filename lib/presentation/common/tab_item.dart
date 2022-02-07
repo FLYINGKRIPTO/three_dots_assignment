@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-enum TabItem { crypto, green, blue, yellow }
+enum TabItem { crypto, stocks, messages, profile }
 
 const Map<TabItem, String> tabName = {
   TabItem.crypto: 'Crypto',
-  TabItem.green: 'green',
-  TabItem.blue: 'blue',
-  TabItem.yellow : 'yellow'
+  TabItem.stocks: 'Stocks',
+  TabItem.messages: 'Messages',
+  TabItem.profile : 'Profile'
 };
