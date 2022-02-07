@@ -29,7 +29,6 @@ class TabNavigator extends StatelessWidget {
     return {
       TabNavigatorRoutes.root: (context) {
         switch(tabItem){
-
           case TabItem.crypto:
             return  CryptoListPage(
               tabItem: tabItem,
@@ -37,23 +36,11 @@ class TabNavigator extends StatelessWidget {
                   _push(context),
             );
           case TabItem.green:
-            return  CryptoListPage(
-              tabItem: tabItem,
-              onPush: (materialIndex) =>
-                  _push(context),
-            );
+            return  Container();
           case TabItem.blue:
-            return  CryptoListPage(
-              tabItem: tabItem,
-              onPush: (materialIndex) =>
-                  _push(context),
-            );
+            return  Container();
           case TabItem.yellow:
-            return  CryptoListPage(
-              tabItem: tabItem,
-              onPush: (materialIndex) =>
-                  _push(context),
-            );
+            return  Container();
         }
       }
     };

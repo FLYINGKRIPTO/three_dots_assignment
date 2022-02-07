@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:three_dots_assignment/presentation/common/tab_item.dart';
+import 'package:three_dots_assignment/utils/constants.dart';
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({required this.currentTab, required this.onSelectTab});
@@ -11,6 +12,7 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: kPrimaryColor,
       type: BottomNavigationBarType.fixed,
       items: [
         _buildItem(TabItem.crypto),

@@ -1,5 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:three_dots_assignment/cubit/crypto_cubit.dart';
+import 'package:three_dots_assignment/cubit/crypto_state.dart';
+import 'package:three_dots_assignment/models/crypto_api_response.dart';
+import 'package:three_dots_assignment/presentation/common/app_bar.dart';
 import 'package:three_dots_assignment/presentation/common/tab_item.dart';
+import 'package:three_dots_assignment/presentation/hearder_widget.dart';
+import 'package:three_dots_assignment/utils/space.dart';
 
 class CryptoListPage extends StatelessWidget {
   const CryptoListPage({Key? key, this.onPush, required this.tabItem})
@@ -10,33 +19,9 @@ class CryptoListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Row(
-            children: [
-              RichText(
-                text: const TextSpan(
-                    text: "three",
-                    style: TextStyle(color: Colors.black, fontSize: 24,letterSpacing: 0.7),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'dots',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold))
-                    ]),
-
-              ),
-            ],
-          ),
-          backgroundColor: Colors.white,
-        ),
-        body: Container(
-          color: Colors.white,
-          child: TabContent(
-            tabItem: tabItem,
-          ),
+        appBar: buildAppBar(),
+        body: TabContent(
+          tabItem: tabItem,
         ));
   }
 }
@@ -48,6 +33,102 @@ class TabContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text("Crypto List");
+    return Column(
+      children: const [HeaderWidget(), Expanded(child: CryptoListWidget())],
+    );
+  }
+}
+
+class CryptoListWidget extends StatefulWidget {
+  const CryptoListWidget({Key? key}) : super(key: key);
+
+  @override
+  _CryptoListWidgetState createState() => _CryptoListWidgetState();
+}
+
+class _CryptoListWidgetState extends State<CryptoListWidget> {
+  late CryptoListCubit _cryptoListCubit;
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _cryptoListCubit = context.read<CryptoListCubit>();
+    _scrollController.addListener(() {
+      if (_scrollController.position.atEdge) {
+        if (_scrollController.position.pixels != 0) {
+          _cryptoListCubit.loadCryptoData();
+        }
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CryptoListCubit, CryptoListState>(
+      bloc: _cryptoListCubit,
+      builder: (context, state) {
+        if (state is CryptoListStateLoading && state.isFirstFetched) {
+          return const LoadingIndicator();
+        }
+        List<Coin> coins = [];
+        bool isLoading = false;
+
+        if (state is CryptoListStateLoading) {
+          coins = state.coins;
+          isLoading = true;
+        } else if (state is CryptoListStateLoaded) {
+          coins = state.coins;
+        }
+        if (coins.isEmpty) {
+          return Container();
+        }
+
+        return ListView.separated(
+          itemBuilder: (context, index) {
+            if (index < coins.length) {
+              return coin(coins[index], context);
+            } else {
+              Timer(const Duration(milliseconds: 30), () {
+                _scrollController
+                    .jumpTo(_scrollController.position.maxScrollExtent);
+              });
+              return const LoadingIndicator();
+            }
+          },
+          itemCount: coins.length + (isLoading ? 1 : 0),
+          separatorBuilder: (context, index) => verticalSpace(12.0),
+          controller: _scrollController,
+        );
+      },
+    );
+  }
+
+  Widget coin(Coin coin, BuildContext context) {
+    return SizedBox(
+      height: 150,
+      child: Row(
+        children: [
+          Text(coin.CoinInfo?.FullName ?? ""),
+          Text(coin.RAW?.USD?.PRICE?.toString() ?? "")
+
+        ],
+      ),
+    );
+  }
+}
+
+class LoadingIndicator extends StatelessWidget {
+  const LoadingIndicator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(
+        color: Theme.of(context).primaryColor,
+      ),
+    );
   }
 }
