@@ -7,7 +7,7 @@ An implementation of infinite scrolling list with circular progress indicator wi
 Handling separate routes for 4 tabs.
 
 WIP/ Scopes for improvements
-1. Add search implementation
+1. Add search implementation - Search Box in the UI is not functional Right now
 2. Add real time updates for crypto prices.
 
 Here is an attached video of working project 
