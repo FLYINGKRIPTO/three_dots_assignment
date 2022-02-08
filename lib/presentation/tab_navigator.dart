@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:three_dots_assignment/presentation/pages/crypto_list_page.dart';
+import 'package:three_dots_assignment/presentation/pages/stocks_list_page.dart';
 
 import 'common/tab_item.dart';
 
@@ -36,7 +37,7 @@ class TabNavigator extends StatelessWidget {
                   _push(context),
             );
           case TabItem.stocks:
-            return  Container();
+            return  StocksListPage(tabItem: tabItem);
           case TabItem.messages:
             return  Container();
           case TabItem.profile:

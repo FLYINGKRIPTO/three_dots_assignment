@@ -9,14 +9,20 @@ import 'crypto_state.dart';
 class CryptoListCubit extends Cubit<CryptoListState> {
   final CryptoAPIClient _cryptoAPIClient;
   int page = 1;
+  // commenting out stream code
+  // late BehaviorSubject<List<Coin>> _coins ;
+  // BehaviorSubject<List<Coin>> get coins => _coins;
 
   CryptoListCubit(this._cryptoAPIClient)
       : super(const CryptoListState.initial()) {
-    init();
+    //init();
     loadCryptoData();
   }
 
-  init() {}
+ // init() {
+    // Commenting out stream code
+   // _coins = BehaviorSubject.seeded([]);
+//  }
 
   loadCryptoData() async {
     if (state is CryptoListStateLoading) return;
@@ -32,7 +38,8 @@ class CryptoListCubit extends Cubit<CryptoListState> {
 
       final coins = (state as CryptoListStateLoading).coins;
       coins.addAll(response.Data!);
-
+      // Commenting the stream code
+    //  _coins.add(coins);
       emit(CryptoListState.loaded(coins: coins));
     } else {
       emit(const CryptoListState.error(
@@ -43,10 +50,28 @@ class CryptoListCubit extends Cubit<CryptoListState> {
 
   List<Coin> runPreRequisites(CryptoListState state) {
     final currentState = state;
-    var oldArticles = <Coin>[];
+    var previousCryptoList  = <Coin>[];
     if (currentState is CryptoListStateLoaded) {
-      oldArticles = currentState.coins;
+      previousCryptoList = currentState.coins;
     }
-    return oldArticles;
+    return previousCryptoList;
   }
+
+// Use this while integrating streams
+// loadMore() async {
+//   final response = await _cryptoAPIClient.getCoins(
+//       Constants.pageSize, page, Constants.currency, Constants.api_key);
+//   final previousData = runPreRequisites(state);
+//   if (response.Message == Constants.successResponse) {
+//     page++;
+//
+//     previousData.addAll(response.Data!);
+//     _coins.add(previousData);
+//   } else {
+//     emit(const CryptoListState.error(
+//       errorMsg: Constants.errorMessage,
+//     ));
+//   }
+// }
+
 }

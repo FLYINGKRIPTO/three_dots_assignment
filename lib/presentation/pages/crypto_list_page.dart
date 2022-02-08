@@ -88,7 +88,9 @@ class _CryptoListWidgetState extends State<CryptoListWidget> {
         return ListView.separated(
           itemBuilder: (context, index) {
             if (index < coins.length) {
-              return coin(coins[index], index);
+              return CryptoCard(
+                crypto: coins[index],
+              );
             } else {
               Timer(const Duration(milliseconds: 30), () {
                 _scrollController
@@ -103,10 +105,6 @@ class _CryptoListWidgetState extends State<CryptoListWidget> {
         );
       },
     );
-  }
-
-  Widget coin(Coin coin, int index) {
-    return CryptoCard(crypto: coin);
   }
 }
 

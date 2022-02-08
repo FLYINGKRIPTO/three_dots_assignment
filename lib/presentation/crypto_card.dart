@@ -39,7 +39,6 @@ class CryptoCard extends StatelessWidget {
               ),
             ),
           ),
-          // our product image
           Positioned(
             top: 0,
             right: 0,
@@ -53,7 +52,6 @@ class CryptoCard extends StatelessWidget {
               ),
             ),
           ),
-          // Product title and price
           Positioned(
             bottom: 0,
             left: 0,

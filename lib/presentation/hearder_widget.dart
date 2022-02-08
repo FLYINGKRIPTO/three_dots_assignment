@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:three_dots_assignment/utils/constants.dart';
 
 class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({Key? key}) : super(key: key);
+  final bool searchBar;
+  const HeaderWidget({Key? key, this.searchBar = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class HeaderWidget extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
+         if(searchBar) Positioned(
             bottom: 0,
             left: 0,
             right: 0,
@@ -64,6 +65,7 @@ class HeaderWidget extends StatelessWidget {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {},
+                      enabled: false,
                       decoration: const InputDecoration(
                         hintText: "Search",
                         hintStyle: TextStyle(
