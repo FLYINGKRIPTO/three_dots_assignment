@@ -8,7 +8,7 @@ import 'package:three_dots_assignment/models/crypto_api_response.dart';
 import 'package:three_dots_assignment/presentation/common/app_bar.dart';
 import 'package:three_dots_assignment/presentation/common/tab_item.dart';
 import 'package:three_dots_assignment/presentation/crypto_card.dart';
-import 'package:three_dots_assignment/presentation/hearder_widget.dart';
+import 'package:three_dots_assignment/presentation/header_widget.dart';
 import 'package:three_dots_assignment/utils/space.dart';
 
 class CryptoListPage extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:three_dots_assignment/presentation/common/app_bar.dart';
 import 'package:three_dots_assignment/presentation/common/tab_item.dart';
 import 'package:three_dots_assignment/utils/constants.dart';
 
-import '../hearder_widget.dart';
+import '../header_widget.dart';
 
 class StocksListPage extends StatelessWidget {
   final TabItem tabItem;

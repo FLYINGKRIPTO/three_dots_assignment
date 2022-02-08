@@ -1,16 +1,14 @@
 # three_dots_assignment
 
-A new Flutter project.
-
+Three Dots assignment Project
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+An implementation of infinite scrolling list with circular progress indicator with pagination
+Handling separate routes for 4 tabs.
 
-A few resources to get you started if this is your first Flutter project:
+WIP/ Scopes for improvements
+1. Add search implementation
+2. Add real time updates for crypto prices.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Here is an attached video of working project 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
